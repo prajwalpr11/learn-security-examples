@@ -31,19 +31,29 @@ This will create a database in MongoDB called __infodisclosure__. Verify its pre
 Answer the following:
 
 1. Briefly explain the potential vulnerabilities in **insecure.ts** that can lead to a DoS attack.
+
 The id parameter from the query string is directly used in the User.findOne query without validation or sanitization, allowing attackers to craft malicious queries.
+
 The server does not validate or sanitize the incoming id parameter, enabling malicious inputs like $ne to exploit the database query.
+
 The endpoint does not implement rate limiting, leaving the server vulnerable to being overwhelmed by a high volume of requests.
 Errors resulting from invalid queries might be logged or exposed, giving attackers insights into the system's behavior.
 
 2. Briefly explain how a malicious attacker can exploit them.
+
 An attacker can craft a malicious query, such as id[$ne]=, to bypass authentication and gain unauthorized access to data.
+
 Submitting malformed or overly complex queries can cause the database or server to crash, leading to a denial of service.
+
 Sending numerous malicious requests without restriction can overwhelm server resources, rendering the application unresponsive to legitimate users.
 
 3. Briefly explain the defensive techniques used in **secure.ts** to prevent the DoS vulnerability?
+
 The express-rate-limit middleware is applied to the /userinfo endpoint, limiting the number of requests a client can make in a specific time window. This helps mitigate brute force and flooding attacks.
+
 The try-catch block ensures that database errors are gracefully handled without crashing the server or leaking sensitive error messages.
+
 Sanitization of inputs should be implemented to prevent NoSQL injection attacks (e.g., using libraries like mongoose-sanitizer or validating input types).
+
 The query parameter id is validated to ensure it is a valid ObjectId, reducing the risk of injection attacks.
 Any database errors are logged internally and a generic error message is returned to the client, avoiding information leakage.
