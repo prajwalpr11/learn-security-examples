@@ -40,9 +40,9 @@ This example demonstrates spoofind through two ways -- Stealing cookies programm
 2. Briefly explain different ways in which vulnerability can be exploited.
 
 <ul>
-<li>**Cookie Stealing Programmatically:** A malicious server (e.g., `mal.ts`) can execute JavaScript in the victim's browser to log and steal cookies, exposing session data.</li>
-<li>**Cross-Site Request Forgery (CSRF):** A malicious HTML file (e.g., `mal-csrf.html`) can auto-submit requests to sensitive endpoints (e.g., `/sensitive`) using the victim's session, impersonating the user without their knowledge.</li>
-<li>**Session Fixation:** If an attacker can predict or steal a session ID, they can use it to gain unauthorized access by sending requests with the stolen cookie.</li>
+<li>Cookie Stealing Programmatically: A malicious server (e.g., `mal.ts`) can execute JavaScript in the victim's browser to log and steal cookies, exposing session data.</li>
+<li>Cross-Site Request Forgery (CSRF): A malicious HTML file (e.g., `mal-csrf.html`) can auto-submit requests to sensitive endpoints (e.g., `/sensitive`) using the victim's session, impersonating the user without their knowledge.</li>
+<li>Session Fixation: If an attacker can predict or steal a session ID, they can use it to gain unauthorized access by sending requests with the stolen cookie.</li>
 </ul>
 
 3. Briefly explain why **secure.ts** does not have the spoofing vulnerability in **insecure.ts**.
